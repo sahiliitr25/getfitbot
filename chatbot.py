@@ -9,7 +9,7 @@ def fine_tune_model(base_model, custom_dataset):
     instructions = [entry["instruction"] for entry in custom_dataset]
     outputs = [entry["output"] for entry in custom_dataset]
 
-
+    tokenizer.add_special_tokens({'pad_token': '[PAD]'})
     inputs = tokenizer(instructions, outputs,  return_tensors='pt', truncation=True, padding=True)
 
 
