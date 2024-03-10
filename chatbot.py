@@ -32,7 +32,7 @@ def chat_with_bot(model_path):
         st.markdown(message["content"])
 
 
-    if prompt := st.chat_input("What is up?"):
+    if prompt := st.chat_input("Hey, i am a fitness assistant, ask me anything"):
     
         st.session_state.messages.append({"role": "user", "content": prompt})
     
@@ -43,11 +43,12 @@ def chat_with_bot(model_path):
           st.markdown(response)
         st.session_state.messages.append({"role": "assistant", "content": response})    
 custom_dataset_path = "./dataset/fitness-chat-prompt-completion-dataset.json"
+# this dataset is taken and downloaded from huggingface datasets. https://huggingface.co/datasets/chibbss/fitness-chat-prompt-completion-dataset/tree/main
 with open(custom_dataset_path, "r", encoding="utf-8") as file:
     custom_dataset = json.load(file)
 
 base_model = 'gpt2'
-
+#using gp2 base model
 fine_tune_model(base_model, custom_dataset)
 
 model_path = './model'
