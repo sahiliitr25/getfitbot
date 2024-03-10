@@ -15,7 +15,7 @@ def fine_tune_model(base_model, custom_dataset):
 
     training_args = TrainingArguments(output_dir='./model', num_train_epochs=3, per_device_train_batch_size=16, 
     per_device_eval_batch_size=64, eval_steps=400, save_steps=800, warmup_steps=500)
-
+    # it will save the fine tuned model to a model folder which i use in the chat_with_bot function later on.
     trainer = Trainer(model=model, args=training_args, data_collator=DataCollatorForLanguageModeling(tokenizer=tokenizer, mlm=False), train_dataset=inputs['input_ids'])
     trainer.train()
     
